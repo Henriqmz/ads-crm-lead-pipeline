@@ -1,0 +1,13 @@
+{
+  "allowed_form_ids": [
+    "form-b2b-enterprise-01",
+    "form-saas-trial-02"
+  ],
+  "ad_accounts": [
+    {
+      "name": "Conta Principal B2B",
+      "account_id": "100000001"
+    }
+  ],
+  "default_pipeline_stage": "NEW_LEAD"
+}
