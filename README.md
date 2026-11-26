@@ -1,6 +1,8 @@
 # Ads-to-CRM Lead Pipeline
 
-Pipeline assíncrono/agendável em Python para captura contínua de leads de plataformas de mídia paga (API REST com OAuth 2.0), normalização/deduplicação em SQLite, injeção automática em CRM e disparo de alertas operacionais via Webhook/Telegram.
+![Interface Ads-to-CRM Lead Pipeline](docs/preview.png)
+
+Pipeline assíncrono/agendável em Python (acompanhado de **Console Web Interativo** via `--serve`) para captura contínua de leads de plataformas de mídia paga (API REST com OAuth 2.0), normalização/deduplicação em SQLite, injeção automática em CRM e disparo de alertas operacionais.
 
 > **100% demonstrável localmente:** inclui modo `--demo` com simulador em memória de Ads API, CRM e Webhook para testar todo o fluxo sem precisar de chaves ou credenciais externas.
 
@@ -30,7 +32,10 @@ python -m venv .venv
 .venv\Scripts\activate  # Linux/Mac: source .venv/bin/activate
 pip install -r requirements.txt
 
-# Roda um ciclo completo com dados sintéticos (sem credenciais reais)
+# Abre o Console Web interativo em http://127.0.0.1:8021
+python -m src.cli --serve
+
+# Ou roda um ciclo único via terminal
 python -m src.cli --demo
 
 # Roda os testes automatizados

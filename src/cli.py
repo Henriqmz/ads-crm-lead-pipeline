@@ -4,7 +4,11 @@ import argparse
 import logging
 from pathlib import Path
 
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover
+    def load_dotenv() -> bool:
+        return False
 
 from .config import load_settings
 from .oauth import OAuthTokenManager
@@ -16,13 +20,20 @@ from .providers import (
     RestAdsProvider,
     WebhookCRMProvider,
 )
+from .server import run_studio
 from .storage import LeadStorage
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Ads-to-CRM Lead Pipeline")
     parser.add_argument("--demo", action="store_true", help="Executa em modo demonstração com dados sintéticos")
+    parser.add_argument("--serve", action="store_true", help="Inicia o painel web interativo do pipeline")
+    parser.add_argument("--port", type=int, default=8021, help="Porta do painel web (padrão: 8021)")
     args = parser.parse_args()
+
+    if args.serve:
+        run_studio(port=args.port)
+        return
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
     load_dotenv()
